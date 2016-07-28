@@ -1,4 +1,4 @@
-@demo
+
 Feature: Home page
 
   Background:

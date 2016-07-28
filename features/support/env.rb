@@ -53,4 +53,7 @@ end
 def my_account_page
   @my_account_page ||= MyAccountPage.new
 end
+def my_buys
+  @my_buys ||= MyBuys.new
+end
 

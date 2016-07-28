@@ -6,13 +6,13 @@ Feature: Smoke test
  #  Given Open "https://www.etundra-test2.com" site
 
 #1 Smoke
-  @smoke
+  @wip
   Scenario: Home Page - Categories menu verification
     Then Verify that menu contains categories:
-      | Equipment |
-#      | Parts     |
-#      | Plumbing  |
-#      | Kitchen   |
+      | Equipment          |
+      | Parts              |
+#      | Plumbing           |
+#      | Kitchen            |
 #      | Dining Room        |
 #      | Disposables        |
 #      | Furniture          |
@@ -26,17 +26,17 @@ Feature: Smoke test
     Then Click on category "<category_name>"
     And Verify that user located on "<pagetitle>" page
     Examples:
-      | category_name | pagetitle                             |
-      | Equipment     | Restaurant & Food Service Equipment   |
-#      | Parts         | Restaurant Equipment Parts & Hardware |
-#      | Plumbing      | Commercial Plumbing Supplies          |
-#      | Kitchen            | Kitchen Supplies                         |
-#      | Dining Room        | Restaurant Dining Room Supplies          |
-#      | Disposables        | Disposables                              |
-#      | Furniture          | Restaurant Furniture                     |
-#      | Specialty Supplies | Specialty Shop Supplies                  |
-#      | Clearance          | Discount Restaurant Supply and Equipment |
-#3
+      | category_name      | pagetitle                                |
+      | Equipment          | Restaurant & Food Service Equipment      |
+      | Parts              | Restaurant Equipment Parts & Hardware    |
+      | Plumbing           | Commercial Plumbing Supplies             |
+      | Kitchen            | Kitchen Supplies                         |
+      | Dining Room        | Restaurant Dining Room Supplies          |
+      | Disposables        | Disposables                              |
+      | Furniture          | Restaurant Furniture                     |
+      | Specialty Supplies | Specialty Shop Supplies                  |
+      | Clearance          | Discount Restaurant Supply and Equipment |
+##3
   @smoke
   Scenario Outline: Verify that each category from list below contains required facet filter category
     Then Click on category "<category_name>"
@@ -46,10 +46,10 @@ Feature: Smoke test
       | Brands         |
       | Pricing        |
     Examples:
-      | category_name |
-      | Equipment     |
-#      | Parts         |
-#      | Plumbing      |
+      | category_name      |
+      | Equipment          |
+      | Parts              |
+#      | Plumbing           |
 #      | Kitchen            |
 #      | Dining Room        |
 #      | Disposables        |
@@ -69,7 +69,7 @@ Feature: Smoke test
     Examples:
       | category_name |
       | Equipment     |
-#      | Parts         |
+      | Parts         |
 #      | Plumbing      |
 ##      | Kitchen            |
 #      | Dining Room        |
@@ -107,7 +107,7 @@ Feature: Smoke test
     Examples:
       | item_code |
       | 990042400 |
-#      | RL35-0000 |
+      | RL35-0000 |
 #      | 114251    |
 #      | 5400      |
 #      | WB-4      |
@@ -127,7 +127,7 @@ Feature: Smoke test
 
 #9
   @smoke
-    @wip
+  @wip
   Scenario: Verify that user ables to open Account popup, popup contains links and use can close this pop up
     Then Click on "Account" icon
     Then "My account" popover contains links:
@@ -235,4 +235,25 @@ Feature: Smoke test
     Examples:
       | email                 | password  | user_name | account_name        |
       | t.d.etundra@gmail.com | Zxc123zxc | Tatsiana  | Tatsiana Darashenka |
+
+
+    #16
+  Scenario Outline: Left menu categoru verivication
+    Then Move mouse to the header "<category_name>"
+    And Verify "<category_name>" pop-window displays subcategories and brands links
+    Then Click on category "<category_name>"
+    And Verify left panel "Sub Categories" contains sub-categories
+    Then Click random "Subcategory" from left panel
+    #Then Verify page displays items and items have prices, SKU and images
+    Examples:
+      | category_name |
+      | Equipment     |
+#      | Parts         |
+#      | Plumbing      |
+#      | Kitchen       |
+#      | Dining Room   |
+#      | Disposables   |
+#      | Furniture     |
+
+
 

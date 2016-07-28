@@ -73,23 +73,23 @@ class SignInPage < ScreenActions
   #signin, forgot page, reset password
 
   def description_text_act
-    $driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/p").text
+    $wait.until{ $driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/p").text}
   end
 
   def signin_page_title
-    $driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/h2")
+    $wait.until{$driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/h2")}
   end
 
   def page_title
-    $driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/h1").text.downcase
+    $wait.until{$driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/h1").text.downcase}
   end
 
   def reset_page_email
-    $driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/b")
+    $wait.until {$driver.find_element(:xpath, "//div[contains(@class, 'signin-welcome')]/b")}
   end
 
   def forgot_pass_email
-    $driver.find_element(:xpath, "//div[@class = 'email form-group ']//input[@id = 'EmailAddress']")
+    $wait.until{ $driver.find_element(:xpath, "//div[@class = 'email form-group ']//input[@id = 'EmailAddress']")}
   end
 
   def forgot_page_elements
@@ -103,7 +103,7 @@ class SignInPage < ScreenActions
   end
 
   def forgot_page_text_req
-     "Need help? Chat now or call 1-888-388-6372"
+    $wait.until {"Need help? Chat now or call 1-888-388-6372"}
   end
 
   def reset_pass_text_req(valid_email)
@@ -117,7 +117,7 @@ class SignInPage < ScreenActions
   end
 
   def bissness_dropdown
-    $driver.find_element(:xpath, "//select[@name = 'SortingAttribute']")
+    $wait.until{ $driver.find_element(:xpath, "//select[@name = 'SortingAttribute']")}
   end
 
   def sign_in_welcome_text_req
@@ -129,11 +129,11 @@ class SignInPage < ScreenActions
   end
 
   def register_title_act
-    $driver.find_element(:xpath, "//div[@class = 'register-welcome']/h2").text.downcase
+    $wait.until {$driver.find_element(:xpath, "//div[@class = 'register-welcome']/h2").text.downcase}
   end
 
   def reg_new_customer_text_act
-    $driver.find_element(:xpath, "//div[@class = 'register-welcome']/p").text
+    $wait.until {$driver.find_element(:xpath, "//div[@class = 'register-welcome']/p").text}
   end
 
   def reg_new_customer_text_req
@@ -147,12 +147,12 @@ class SignInPage < ScreenActions
   end
 
   def reg_new_account_text_act
-    text = $driver.find_elements(:xpath, "(//div[@class = 'register-welcome']/p)")
+    $wait.until {text = $driver.find_elements(:xpath, "(//div[@class = 'register-welcome']/p)")}
     text.map! { |text| text.text.strip }
   end
 
   def reg_new_account_bullets_act
-    bullets = $driver.find_elements(:xpath, "//div[@class = 'register-welcome']//li[contains(text(), *)]")
+    $wait.until {bullets = $driver.find_elements(:xpath, "//div[@class = 'register-welcome']//li[contains(text(), *)]")}
     bullets.map! { |bullet| bullet.text.strip }
   end
 

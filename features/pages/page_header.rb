@@ -74,6 +74,13 @@ class PageHeader < ScreenActions
   def user_name
     $driver.find_element(:xpath, "//div[@class = 'user-info']/span[2]")
   end
+  def header_category_subcategories(category_name)
+    $wait.until {$driver.find_elements(:xpath, "//div[@class = 'mnu-item hzof-item'][.//span[text() = '#{category_name}']]//div/a")}
+  end
+  def header_subcategories_qty(category_name)
+    @@header_subcategories_qty = page_header.header_category_subcategories(category_name).count
+  end
+
   # def search_button
   #   $driver.find_element(:xpath,"//div[@class = 'input-group']//span[@class = 'input-group-btn']")
   # end

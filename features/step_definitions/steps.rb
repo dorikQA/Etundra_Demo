@@ -137,9 +137,9 @@ And(/^Enter valid password "([^"]*)"$/) do |password|
   sign_in_page.sign_in_password.send_keys password
 end
 Then /^Tap "([^"]*)" button$/ do |button_name|
-  element =  $driver.find_element(:id,"menu-primary-section")
-  $driver.mouse.move_to element
-  element.click
+  element =  $driver.find_element(:id,"menu-primary-section").click
+  # $driver.mouse.move_to element
+  # element.click
  sign_in_page.button_name(button_name).click
 end
 Then /^Verify "Sign In" side title and text$/ do
@@ -270,6 +270,36 @@ Then /^"([^"]*)" should contains "([^"]*)", "([^"]*)", "([^"]*)", required secti
 
 
 end
+Then /^Move mouse to the header "([^"]*)"$/ do |category_name|
+  $driver.mouse.move_to page_header.category_name(category_name)
+end
+Then /^Verify "([^"]*)" pop-window displays subcategories and brands links$/ do |category_name|
+  qty =  page_header.header_category_subcategories(category_name).count
+  puts qty
+end
+
+Then /^Verify left panel "Sub Categories" contains sub-categories$/ do
+ leftside_subcategories_qty = facet_menu.subcategories_links.count
+  puts  leftside_subcategories_qty
+  expect(leftside_subcategories_qty > 0).to be true
+end
+Then /^Click random "Subcategory" from left panel$/ do
+  subcategory  = facet_menu.subcategories_links.sample
+  puts  subcategory.text
+  puts subcategory.attribute("href")
+  subcategory.location_once_scrolled_into_view
+  #subcategory.click
+
+end
+
+Then /^Verify page displays items and items have prices, SKU and images$/ do
+  expect(list_items_page.products_prices.count > 0).to be true
+  expect(list_items_page.products_images.count > 0).to be true
+  expect(list_items_page.products_names.count > 0).to be true
+  expect(list_items_page.products_sku.count > 0).to be true
+end
+
+
 
 # Then /^Test$/ do
 #  element =  $driver.find_element(:id,"menu-primary-section")
