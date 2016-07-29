@@ -37,11 +37,12 @@ class PageHeader < ScreenActions
 
   def account_popover_header
     elements = $wait.until { $driver.find_elements(:xpath, "//div[@class = 'popover-header']") }
+    puts elements.count
 
-    if elements.count > 0
-      elements.each {|i| push(i.displayed? == true) }
-    end
-    return elements
+    # if elements.count > 0
+    #   elements.each {|i| push(i.displayed? == true) }
+    # end
+    # return elements
 
   end
 
@@ -74,11 +75,17 @@ class PageHeader < ScreenActions
   def user_name
     $driver.find_element(:xpath, "//div[@class = 'user-info']/span[2]")
   end
+
   def header_category_subcategories(category_name)
     $wait.until {$driver.find_elements(:xpath, "//div[@class = 'mnu-item hzof-item'][.//span[text() = '#{category_name}']]//div/a")}
   end
+
   def header_subcategories_qty(category_name)
     @@header_subcategories_qty = page_header.header_category_subcategories(category_name).count
+  end
+
+  def cart_icon
+   $driver.find_element(:id, 'quickcart')
   end
 
   # def search_button

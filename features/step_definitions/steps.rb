@@ -11,6 +11,8 @@ Then /^Verify that menu contains categories:$/ do |categories_table|
 end
 
 And(/^Click on category "([^"]*)"$/) do |category_name|
+  $driver.mouse.move_to page_header.logo_image
+  sleep 1
   page_header.category_name(category_name).click
   $driver.mouse.move_to page_header.logo_image
 
@@ -110,7 +112,9 @@ Then /^"My account" popover contains links:$/ do |accountlinks|
   end
 end
 Then /^Tap to close My Account button$/ do
+  $driver.mouse.move_to page_header.account_popover_close_button
   page_header.account_popover_close_button.click
+
   # expect(close_button.displayed?).to be true, "expected button to be displayed, got #{close_button.inspect}'"
 end
 
@@ -299,13 +303,27 @@ Then /^Verify page displays items and items have prices, SKU and images$/ do
   expect(list_items_page.products_sku.count > 0).to be true
 end
 
+Then /^Add Trending item from home page to cart$/ do
+
+ home_page.trending_items_list[1].location_once_scrolled_into_view
+ element =  $driver.find_element(:xpath, "//div[@id = 'Home']")
+ element.location_once_scrolled_into_view
+ home_page.trendingitem_addtocart[2].click
 
 
-# Then /^Test$/ do
-#  element =  $driver.find_element(:id,"menu-primary-section")
-#  $driver.mouse.move_to element
-#  element.click
-#
-#   $driver.find_element(:xpath,"//button[text() = 'Register']").click
-#
-# end
+end
+Then /^Open cart$/ do
+  page_header.cart_icon.click
+
+end
+Then /^Click Proceed to Checkout button$/ do
+  cartpage.coupon_code_header.location_once_scrolled_into_view
+  #
+  # cartpage.coupon_code_header.location_once_scrolled_into_view
+#  puts cartpage.proceed_checkout_button.count
+  $driver.mouse.move_to cartpage.proceed_checkout_button
+  sleep 1
+  cartpage.proceed_checkout_button.click
+
+end
+

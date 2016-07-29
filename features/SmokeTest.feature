@@ -13,9 +13,9 @@ Feature: Smoke test
       | Parts              |
 #      | Plumbing           |
 #      | Kitchen            |
-#      | Dining Room        |
-#      | Disposables        |
-#      | Furniture          |
+      | Dining Room        |
+      | Disposables        |
+      | Furniture          |
 #      | Specialty Supplies |
 #      | Clearance          |
 #      | Brands             |
@@ -51,7 +51,7 @@ Feature: Smoke test
       | Parts              |
 #      | Plumbing           |
 #      | Kitchen            |
-#      | Dining Room        |
+      | Dining Room        |
 #      | Disposables        |
 #      | Furniture          |
 #      | Specialty Supplies |
@@ -74,7 +74,7 @@ Feature: Smoke test
 ##      | Kitchen            |
 #      | Dining Room        |
 #      | Disposables        |
-#      | Furniture          |
+      | Furniture          |
 #      | Specialty Supplies |
 #      | Clearance          |
 #5
@@ -134,7 +134,7 @@ Feature: Smoke test
       | My Account |
       | Sign In    |
     And Tap to close My Account button
-    And Verify My Account popup was closed
+   # And Verify My Account popup was closed
 #10
   @wip
   Scenario: User should be able to open Sign in page and correct text should be displayed
@@ -254,6 +254,13 @@ Feature: Smoke test
 #      | Dining Room   |
 #      | Disposables   |
 #      | Furniture     |
+
+  Scenario: Add trending item to cart
+    Then Add Trending item from home page to cart
+    Then Open cart
+    Then Click Proceed to Checkout button
+
+
 
 
 

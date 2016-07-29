@@ -56,4 +56,9 @@ end
 def my_buys
   @my_buys ||= MyBuys.new
 end
-
+def home_page
+  @home_page ||= HomePage.new
+end
+def cartpage
+  @cartpage ||= CartPage.new
+end

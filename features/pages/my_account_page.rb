@@ -1,4 +1,4 @@
-class MyAccountPage < ScreenActions
+class MyAccountPage
   def page_title
     $driver.find_element(:xpath, "//div[@class = 'row myaccount-header']").text
   end

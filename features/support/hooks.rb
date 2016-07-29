@@ -6,7 +6,7 @@ Before do
 end
 
 AfterStep do
-  $driver.manage.timeouts.implicit_wait = 6
+  $driver.manage.timeouts.implicit_wait = 5
   sign_in_page.signup_popup_close
 
 end
@@ -26,6 +26,6 @@ After do |scenario|
     embed("#{screenshot_file}", 'image/png')
   end
 
- $driver.close
+# $driver.close
  #$driver.quit
 end
