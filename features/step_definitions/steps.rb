@@ -317,13 +317,18 @@ Then /^Open cart$/ do
 
 end
 Then /^Click Proceed to Checkout button$/ do
+
+  $driver.mouse.move_to page_header.logo_image
   cartpage.coupon_code_header.location_once_scrolled_into_view
-  #
-  # cartpage.coupon_code_header.location_once_scrolled_into_view
-#  puts cartpage.proceed_checkout_button.count
+  #cartpage.proceed_checkout_button.location_once_scrolled_into_view
+
+
   $driver.mouse.move_to cartpage.proceed_checkout_button
+
   sleep 1
-  cartpage.proceed_checkout_button.click
+
+ cartpage.proceed_checkout_button.click
+
 
 end
 

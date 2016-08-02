@@ -90,4 +90,13 @@ class ScreenActions
         base_click
       end
     end
+
+  def chat_popup_close
+     popup = $driver.find_elements(:xpath, "//div[@class = 'lhnInviteContainer']")
+  if popup.count > 0
+    $driver.find_element(:xpath, "//a[@class = 'LHNInviteCloseButton']").click
+  end
+  end
+
+
 end
