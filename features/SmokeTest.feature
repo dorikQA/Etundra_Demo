@@ -255,10 +255,17 @@ Feature: Smoke test
 #      | Disposables   |
 #      | Furniture     |
 
-  Scenario: Add trending item to cart
+  Scenario Outline: Add trending item to cart
     Then Add Trending item from home page to cart
     Then Open cart
     Then Click Proceed to Checkout button
+    Then Enter email "<email>"
+    And Enter valid password "<password>"
+    And Tap "Sign In" button
+
+  Examples:
+  | email                 | password  |
+  | t.d.etundra@gmail.com | Zxc123zxc |
 
 
 
