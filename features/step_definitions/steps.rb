@@ -145,6 +145,7 @@ Then /^Tap "([^"]*)" button$/ do |button_name|
   # $driver.mouse.move_to element
   # element.click
  sign_in_page.button_name(button_name).click
+
 end
 Then /^Verify "Sign In" side title and text$/ do
   expect(sign_in_page.sign_in_title).to eq(sign_in_page.sign_in_title_req)
@@ -263,17 +264,21 @@ Then /^Verify Reset page displayed with correct text and title, "([^"]*)"$/ do |
   sign_in_page.verify_reset_page(email)
 end
 
-Then /^"([^"]*)" should contains "([^"]*)", "([^"]*)", "([^"]*)", required sections:$/ do |page_name, user_name, email, account_name|
+Then /^"([^"]*)" should contains "([^"]*)", "([^"]*)", "([^"]*)"$/ do |page_name, user_name, email, account_name|
 
 
   expect(sign_in_page.page_verification(page_name)).to  be_truthy
-
   expect(my_account_page.user_email).to eq(email)
   expect(my_account_page.user_name).to eq(user_name)
   expect(my_account_page.account_name).to eq(account_name)
 
 
 end
+
+Then /^My account page should include required sections$/ do
+  expect(my_account_page.titles).to match_array  ["My Account Details", "My Order History", "My Loyalty Program", "My Frequently Purchased"]
+end
+
 Then /^Move mouse to the header "([^"]*)"$/ do |category_name|
   $driver.mouse.move_to page_header.category_name(category_name)
 end
@@ -317,18 +322,24 @@ Then /^Open cart$/ do
 
 end
 Then /^Click Proceed to Checkout button$/ do
-
   $driver.mouse.move_to page_header.logo_image
   cartpage.coupon_code_header.location_once_scrolled_into_view
-  #cartpage.proceed_checkout_button.location_once_scrolled_into_view
-
-
-  $driver.mouse.move_to cartpage.proceed_checkout_button
-
+  cartpage.proceed_checkout_button.location_once_scrolled_into_view
+  cartpage.coupon_code_header.location_once_scrolled_into_view
+  # $driver.mouse.move_to cartpage.proceed_checkout_button
   sleep 1
-
- cartpage.proceed_checkout_button.click
-
-
+  cartpage.proceed_checkout_button.click
 end
+
+Then /^Verify checkout page contain required sections$/ do
+   expect(checkout_page.checkout_headers).to match_array ["Contact Information", "Secure Billing", "Shipping Address", "Order Summary", "Shipping Options", "PO Number", "Coupon Code"]
+end
+Then /^Verify Place your order buttons displayed$/ do
+  expect(checkout_page.placeorder_buttons.count).to eq 2
+end
+Then /^\"What happens now?\" text should match requirements$/ do
+   expect(checkout_page.whathappens_text_act).to eq checkout_page.whathappens_text_req
+end
+
+
 

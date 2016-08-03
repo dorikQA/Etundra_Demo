@@ -2,24 +2,24 @@
 Feature: Smoke test
 
   Background:
-    Given Open "https://www.etundra.com" site
- #  Given Open "https://www.etundra-test2.com" site
+ #   Given Open "https://www.etundra.com" site
+  Given Open "https://www.etundra-test2.com" site
 
 #1 Smoke
-  @wip
+
   Scenario: Home Page - Categories menu verification
     Then Verify that menu contains categories:
       | Equipment          |
       | Parts              |
-#      | Plumbing           |
-#      | Kitchen            |
+      | Plumbing           |
+      | Kitchen            |
       | Dining Room        |
       | Disposables        |
       | Furniture          |
-#      | Specialty Supplies |
-#      | Clearance          |
-#      | Brands             |
-#      | More...            |
+      | Specialty Supplies |
+      | Clearance          |
+      | Brands             |
+      | More...            |
 #2 Smoke
   @smoke @demo
   Scenario Outline: Filter categories verification - facet menu
@@ -49,13 +49,13 @@ Feature: Smoke test
       | category_name      |
       | Equipment          |
       | Parts              |
-#      | Plumbing           |
-#      | Kitchen            |
+      | Plumbing           |
+      | Kitchen            |
       | Dining Room        |
-#      | Disposables        |
-#      | Furniture          |
-#      | Specialty Supplies |
-#      | Clearance          |
+      | Disposables        |
+      | Furniture          |
+      | Specialty Supplies |
+      | Clearance          |
  #4
   @smoke
   Scenario Outline: Verification of Stocked Item in Specials and quantity of items
@@ -70,13 +70,13 @@ Feature: Smoke test
       | category_name |
       | Equipment     |
       | Parts         |
-#      | Plumbing      |
-##      | Kitchen            |
-#      | Dining Room        |
-#      | Disposables        |
+      | Plumbing      |
+      | Kitchen            |
+      | Dining Room        |
+      | Disposables        |
       | Furniture          |
-#      | Specialty Supplies |
-#      | Clearance          |
+      | Specialty Supplies |
+      | Clearance          |
 #5
   @smoke
   Scenario Outline: Search by Product Name functionality
@@ -121,14 +121,13 @@ Feature: Smoke test
     Examples:
       | sku     |
       | ISI1007 |
-      | ISI1004 |
+      #     | ISI1004 |
 #      | 51309   |
 #      | 56102   |
 
 #9
   @smoke
-  @wip
-  Scenario: Verify that user ables to open Account popup, popup contains links and use can close this pop up
+   Scenario: Verify that user ables to open Account popup, popup contains links and use can close this pop up
     Then Click on "Account" icon
     Then "My account" popover contains links:
       | My Account |
@@ -136,7 +135,6 @@ Feature: Smoke test
     And Tap to close My Account button
    # And Verify My Account popup was closed
 #10
-  @wip
   Scenario: User should be able to open Sign in page and correct text should be displayed
     When Click on "Account" icon
     And Click "Sign In" link
@@ -226,7 +224,8 @@ Feature: Smoke test
     And Enter valid password "<password>"
     And Tap "Sign In" button
     Then Verify user on "My Account" page
-    And "My Account" should contains "<user_name>", "<email>", "<account_name>", required sections:
+    And "My Account" should contains "<user_name>", "<email>", "<account_name>"
+    Then My account page should include required sections
 #      | My Account Details      |
 #      | My Order History        |
 #      | My Loyalty Program      |
@@ -236,8 +235,7 @@ Feature: Smoke test
       | email                 | password  | user_name | account_name        |
       | t.d.etundra@gmail.com | Zxc123zxc | Tatsiana  | Tatsiana Darashenka |
 
-
-    #16
+   #16
   Scenario Outline: Left menu categoru verivication
     Then Move mouse to the header "<category_name>"
     And Verify "<category_name>" pop-window displays subcategories and brands links
@@ -255,17 +253,31 @@ Feature: Smoke test
 #      | Disposables   |
 #      | Furniture     |
 
-  Scenario Outline: Add trending item to cart
+#17
+  @wip
+  Scenario Outline: Add trending item to cart and verify checkout page match requerments
     Then Add Trending item from home page to cart
     Then Open cart
     Then Click Proceed to Checkout button
     Then Enter email "<email>"
     And Enter valid password "<password>"
     And Tap "Sign In" button
-
+    Then Click Proceed to Checkout button
+    And Verify checkout page contain required sections
+#      | Contact Information |
+#      | Secure Billing      |
+#      | Shipping Address    |
+#      | Order Summary       |
+#      | Shipping Options    |
+#      | PO Number           |
+#      | Coupon Code         |
+    Then Verify Place your order buttons displayed
+    And "What happens now" text should match requirements
+# What happens now? When clicking "Proceed to secure payment" you will be directed to a secure payment page where you will be asked to enter payment information.
   Examples:
   | email                 | password  |
   | t.d.etundra@gmail.com | Zxc123zxc |
+
 
 
 

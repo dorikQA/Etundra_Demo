@@ -62,3 +62,6 @@ end
 def cartpage
   @cartpage ||= CartPage.new
 end
+def checkout_page
+  @checkout_page ||= CheckoutPage.new
+end

@@ -8,7 +8,7 @@ class MyAccountPage
   def my_order_history_title
     $driver.find_element(:xpath, "//span[@class = 'myaccount-panel-header' and text() = 'My Order History']").text
   end
-  def   my_freq_purchased_title
+  def  my_freq_purchased_title
     $driver.find_element(:xpath, "//span[@class = 'myaccount-panel-header' and text() = 'My Frequently Purchased']").text
   end
 
@@ -16,6 +16,10 @@ class MyAccountPage
 
     $driver.find_element(:xpath, "//span[@class = 'myaccount-panel-header-loyalty' and text() = 'My Frequently Purchased']")
 
+  end
+  def titles
+   titles = $driver.find_elements(:xpath, "//span[contains(@class, 'myaccount-panel-header')]")
+    titles.map! {|x| x.text}
   end
 
 def section_titles_act
@@ -29,7 +33,6 @@ end
     section_titles_req = ['My Account Details','My Order History','My Frequently Purchased','My Loyalty Program']
   end
   def user_name
-
     $driver.find_element(:xpath,"//div[@class= 'form-group'][1]//span[2]").text.chomp("!")
   end
   def user_email

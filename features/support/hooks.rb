@@ -6,7 +6,7 @@ Before do
 end
 
 AfterStep do
-  $driver.manage.timeouts.implicit_wait = 5
+  $driver.manage.timeouts.implicit_wait = 3
   sign_in_page.signup_popup_close
   #screen_actions.chat_popup_close
 
