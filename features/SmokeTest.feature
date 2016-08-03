@@ -254,7 +254,7 @@ Feature: Smoke test
 #      | Furniture     |
 
 #17
-  @wip
+
   Scenario Outline: Add trending item to cart and verify checkout page match requerments
     Then Add Trending item from home page to cart
     Then Open cart
@@ -277,6 +277,12 @@ Feature: Smoke test
   Examples:
   | email                 | password  |
   | t.d.etundra@gmail.com | Zxc123zxc |
+
+ #18
+  @wip
+  Scenario:
+
+
 
 
 

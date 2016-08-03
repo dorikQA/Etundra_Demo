@@ -19,6 +19,19 @@ class CheckoutPage < ScreenActions
     $driver.find_element(:xpath, "//span[@class = 'checkout-summary-body']").text
 
   end
+  def contactinfo
+    $driver.find_elements(:xpath, "//li[@id = 'contact-information']//div[@class = 'form-group checkout-readonly-text']//span")
+  end
+  def securebill
+    $driver.find_elements(:xpath, "//li[@id = 'payment-information']//div[@class = 'form-group checkout-readonly-text']//span")
+  end
+  def shippaddress
+    $driver.find_elements(:xpath, "//li[@id = 'shipping-information']//div[@class = 'form-group checkout-readonly-text']span")
 
+  end
+  def order_summary
+    $driver.find_elements(:xpath, "//li[@id = 'review-order']//div[@class = 'form-group checkout-readonly-text']")
+
+  end
 
 end
